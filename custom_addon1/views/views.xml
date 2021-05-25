@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="custom_addon1.V" model="ir.ui.view" >
+        <field name="name">custom_addon1.V</field>
+        <field name="model">custom_addon1</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="custom_addon1.form">
+        <field name="name">custom_addon1.form</field>
+        <field name="model">custom_addon1</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                          <field name="name"/>
+                    </group>
+                </group>
+
+            </form>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="custom_addon1.action_window">
+      <field name="name">Custom Profile</field>
+      <field name="res_model">custom_addon1</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <menuitem name="custom" id="custom_addon1.menu_root" />
+
+
+
+    <menuitem name="Custom" id="custom_addon1.menu_1" parent="custom_addon1.menu_root"/>
+
+
+    <menuitem id="custom_addon1.menu_1_list" parent="custom_addon1.menu_1"
+              action="custom_addon1.action_window"/>
+
+
+
+</odoo>

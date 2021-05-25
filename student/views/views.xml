@@ -1,0 +1,138 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="student.list">
+      <field name="name">student.list</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="school_id"/>
+
+        </tree>
+      </field>
+    </record>
+
+
+        <record model="ir.ui.view" id="hobbies_list">
+      <field name="name">hobbies_list</field>
+      <field name="model">hobbies</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+
+
+        </tree>
+      </field>
+    </record>
+
+            <record model="ir.ui.view" id="hobbies_form">
+      <field name="name">hobbies_form</field>
+      <field name="model">hobbies</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <group>
+                  <field name="name"/>
+
+            </group>
+          </group>
+
+        </form>
+      </field>
+    </record>
+
+        <record model="ir.ui.view" id="student.form">
+      <field name="name">student.form</field>
+      <field name="model">school.student</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <group>
+                  <field name="name"/>
+                  <field name="school_id"/>
+                  <field name="hobbies_list"/>
+            </group>
+          </group>
+
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="school_extend_form">
+      <field name="name">school_extend form</field>
+      <field name="model">school.school</field>
+      <field name="inherit_id" ref="school.form"/>
+      <field name="arch" type="xml">
+        <field name="name" position="after">
+          <field name="school_list"/>
+        </field>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="student.action_window">
+      <field name="name">Student Profile</field>
+      <field name="res_model">school.student</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+
+        <record model="ir.actions.act_window" id="hobbies_action_window">
+      <field name="name">hobbies Profile</field>
+      <field name="res_model">hobbies</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+<!--
+    <record model="ir.actions.server" id="student.action_server">
+      <field name="name">student server</field>
+      <field name="model_id" ref="model_student_student"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="student" id="student.menu_root"/>
+    <!-- menu categories -->
+
+    <menuitem name="student" id="student.menu_1" parent="student.menu_root"/>
+    <!-- actions -->
+
+    <menuitem name="student" id="student.menu_1_list" parent="student.menu_1"
+              action="student.action_window"/>
+<!--
+
+
+
+
+    <menuitem name="Server to list" id="student" parent="student.menu_2"
+              action="student.action_server"/>
+-->
+
+        <menuitem name="hobbies" id="hobbies_menu_root"/>
+    <!-- menu categories -->
+
+    <menuitem name="hobbies" id="hobbies_menu_1" parent="hobbies_menu_root"/>
+    <!-- actions -->
+
+    <menuitem name="hobbies" id="hobbies_menu_1_list" parent="hobbies_menu_1"
+              action="hobbies_action_window"/>
+
+
+
+  </data>
+</odoo>
